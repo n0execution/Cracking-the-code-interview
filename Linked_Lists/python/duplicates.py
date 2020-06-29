@@ -29,6 +29,22 @@ def remove_duplicates2(linked_list: LinkedList):
     return linked_list
 
 
+def remove_duplicates3(linked_list: LinkedList):
+    current = linked_list.head
+
+    while current.next:
+        runner = current
+        while runner.next:
+            if current.data == runner.next.data:
+                runner.next = runner.next.next
+            else:
+                runner = runner.next
+
+        current = current.next
+
+    return linked_list
+
+
 def main():
     linked_list = LinkedList()
     for i in range(10):
@@ -37,7 +53,7 @@ def main():
     print(linked_list)
 
     print(remove_duplicates1(linked_list))
-    print(remove_duplicates2(linked_list))
+    print(remove_duplicates3(linked_list))
 
 
 if __name__ == '__main__':
