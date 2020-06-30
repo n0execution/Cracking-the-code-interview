@@ -38,7 +38,6 @@ def is_substring(str1, str2):
     return False
 
 
-
 def main():
     str1 = "waterbottle"
     str2 = "erbottlewat"

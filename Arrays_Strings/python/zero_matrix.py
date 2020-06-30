@@ -5,7 +5,6 @@ def zero_matrix(matrix):
     rows = []
     columns = []
 
-
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if matrix[i][j] == 0:
@@ -31,7 +30,6 @@ def main():
     n = 3
 
     matrix = [[0]*n for i in range(m)]
-
 
     for i in range(m):
         for j in range(n):

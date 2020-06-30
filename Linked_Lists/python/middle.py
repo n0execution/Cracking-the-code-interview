@@ -4,11 +4,10 @@ from random import randint
 
 class StaticVar(object):
     length = 0
-    index = 0
 
 
 def delete_middle(node):
-    node.value = node.next.data
+    node.data = node.next.data
     node.next = node.next.next
 
 
@@ -21,7 +20,6 @@ def get_middle(head: LinkedList, s):
     index = get_middle(head.next, s) - 1
 
     if index == s.length // 2:
-        s.index = index - 1
         delete_middle(head)
 
     return index
