@@ -29,6 +29,32 @@ func (list *LinkedList) Append(data int) {
 }
 
 
+func (list *LinkedList) AddToBeginning(data int) {
+  newNode := Node{Data: data}
+  if list.Head == nil {
+    list.Head = &newNode
+    list.Tail = &newNode
+  } else {
+    head := list.Head
+    list.Head = &newNode
+    newNode.Next = head
+  }
+}
+
+
+func (list *LinkedList) DeleteLast() {
+  node := list.Head
+  prev := node
+
+  for node.Next != nil {
+    prev = node
+    node = node.Next
+  }
+
+  prev.Next = nil
+}
+
+
 func PrintLinkedList(list LinkedList) {
   node := list.Head
   for node != nil {
