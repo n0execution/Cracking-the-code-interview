@@ -80,3 +80,13 @@ class LinkedList(object):
         if index == len(self):
             self.tail = prev_prev
             self.tail.next = next_node
+
+    def delete_last(self):
+        node = self.head
+        prev = node
+
+        while node.next:
+            prev = node
+            node = node.next
+
+        prev.next = None
