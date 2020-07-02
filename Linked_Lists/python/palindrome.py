@@ -1,4 +1,5 @@
 from LinkedList import  LinkedList
+from Stack import Stack
 
 
 def compare_lists(node1, node2):
@@ -31,6 +32,31 @@ def is_palindrome(linked_list):
     return compare_lists(linked_list.head, reversed_list.head)
 
 
+def is_palindrome2(linked_list):
+    slow = linked_list.head
+    fast = linked_list.head
+    s = Stack()
+
+    while fast is not None and fast.next is not None:
+        s.push(slow.data)
+
+        slow = slow.next
+        fast = fast.next.next
+
+    if fast is not None:
+        slow = slow.next
+
+    while slow is not None:
+        top = s.pop()
+
+        if slow.data != top:
+            return False
+
+        slow = slow.next
+
+    return True
+
+
 def main():
     linked_list = LinkedList()
     linked_list.append(1)
@@ -39,9 +65,9 @@ def main():
     linked_list.append(3)
     linked_list.append(2)
     linked_list.append(1)
-    linked_list.append(1)
+    linked_list.append(2)
 
-    print(is_palindrome(linked_list))
+    print(is_palindrome2(linked_list))
 
 
 if __name__ == '__main__':
