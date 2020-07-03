@@ -1,3 +1,6 @@
+from exceptions import *
+
+
 class StacksInArray(object):
     def __init__(self, stacks_num, stack_size):
         self.stacks_num = stacks_num
@@ -6,11 +9,11 @@ class StacksInArray(object):
         self.lengths = [0] * stacks_num
 
     def push(self, stack_num, x):
-        if not 0 <= stack_num < self.stack_size:
-            return None
+        if not 0 <= stack_num < self.stacks_num:
+            raise WrongStackNumException(stack_num)
 
         if self.lengths[stack_num] == self.stack_size:
-            return None
+            raise StackFullException()
 
         start_index = stack_num * self.stack_size
         index = start_index + self.lengths[stack_num]
@@ -18,11 +21,11 @@ class StacksInArray(object):
         self.lengths[stack_num] += 1
 
     def pop(self, stack_num):
-        if not 0 <= stack_num < self.stack_size:
-            return None
+        if not 0 <= stack_num < self.stacks_num:
+            raise WrongStackNumException(stack_num)
 
         if self.lengths[stack_num] == 0:
-            return None
+            raise StackEmptyException()
 
         start_index = stack_num * self.stack_size
         index = start_index + self.lengths[stack_num] - 1
@@ -41,6 +44,7 @@ def main():
 
     s.push(1, 1)
     s.push(1, 2)
+    s.push(1, 3)
     s.push(1, 3)
 
     print(s.elements)
