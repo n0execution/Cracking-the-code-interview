@@ -43,10 +43,9 @@ func (s *StackMin) Pop() (int, bool) {
     s.mins.DeleteLast()
   }
 
-  if length == 1 {
-    return top, true
+  if length != 1 {
+    s.top = s.elements[length-2]
   }
-  s.top = s.elements[length-2]
 
   return top, true
 }
