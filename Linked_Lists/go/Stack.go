@@ -9,31 +9,38 @@ import (
 type Stack struct {
   elements []int
   top int
+  size int
 }
 
 
 func (s *Stack) Push(x int) {
   s.elements = append(s.elements, x)
   s.top = x
+  s.size++
 }
 
 
 func (s *Stack) Pop() (int, bool) {
   top := s.top
-  length := len(s.elements)
 
-  if length == 0 {
+  if s.IsEmpty() {
     return 0, false
   }
 
-  s.elements = s.elements[:length-1]
+  s.elements = s.elements[:s.size-1]
+  s.size--
 
-  if length == 1 {
+  if s.IsEmpty() {
     return top, true
   }
-  s.top = s.elements[length-2]
+  s.top = s.elements[s.size-1]
 
   return top, true
+}
+
+
+func (s *Stack) IsEmpty() bool {
+  return s.size == 0
 }
 
 
