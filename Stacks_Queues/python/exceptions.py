@@ -16,3 +16,8 @@ class StackEmptyException(Exception):
 class SetEmptyException(Exception):
     def __init__(self):
         super().__init__(f"Set is empty")
+
+
+class QueueEmptyException(Exception):
+    def __init__(self):
+        super().__init__(f"Queue is empty")
