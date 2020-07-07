@@ -8,6 +8,9 @@ class LimitedStack(object):
         self.top = None
         self.elements = []
 
+    def __str__(self):
+        return self.elements.__str__()
+
     def push(self, x):
         if self.is_full():
             raise StackFullException()
