@@ -21,3 +21,18 @@ class SetEmptyException(Exception):
 class QueueEmptyException(Exception):
     def __init__(self):
         super().__init__(f"Queue is empty")
+
+
+class NoAnimalsException(Exception):
+    def __init__(self):
+        super().__init__(f"Animal shelter is empty")
+
+
+class NoDogsException(Exception):
+    def __init__(self):
+        super().__init__(f"No dogs in shelter")
+
+
+class NoCatsException(Exception):
+    def __init__(self):
+        super().__init__(f"No cats in shelter")
