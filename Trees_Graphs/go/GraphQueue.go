@@ -23,9 +23,9 @@ func (q *GraphQueue) IsEmpty() bool {
 }
 
 
-func (q *GraphQueue) Dequeue() (GraphNode, bool) {
+func (q *GraphQueue) Dequeue() (*GraphNode, bool) {
   if q.IsEmpty() {
-    return GraphNode{}, false
+    return &GraphNode{}, false
   }
 
   var first GraphNode
@@ -34,10 +34,10 @@ func (q *GraphQueue) Dequeue() (GraphNode, bool) {
   q.size--
 
   if q.IsEmpty() {
-    return first, false
+    return &first, false
   }
 
-  return first, true
+  return &first, true
 }
 
 
