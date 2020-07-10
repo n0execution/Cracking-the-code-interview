@@ -13,7 +13,7 @@ type Queue struct {
 
 
 func (q *Queue) Enqueue(str string) {
-  q.elements = append (q.elements, str)
+  q.elements = append(q.elements, str)
   q.size++
 }
 
