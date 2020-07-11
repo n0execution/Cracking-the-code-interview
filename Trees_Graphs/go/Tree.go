@@ -73,3 +73,40 @@ func PrintLinkedListOfTreeNodes(list LinkedListOfTreeNodes) {
   }
   fmt.Print("nil\n")
 }
+
+
+func writeDepth(node *TreeNode, dNum int, list *[]*LinkedListOfTreeNodes) {
+  var depthList LinkedListOfTreeNodes
+  if dNum == len(*list) {
+    depthList.Append(node)
+    *list = append(*list, &depthList)
+  } else {
+    depthList = *(*list)[dNum]
+    depthList.Append(node)
+    (*list)[dNum] = &depthList
+  }
+
+  if node.LeftChild != nil {
+    writeDepth(node.LeftChild, dNum + 1, list)
+  }
+
+  if node.RightChild != nil {
+    writeDepth(node.RightChild, dNum + 1, list)
+  }
+}
+
+
+func PrintTreeNodes(root *TreeNode) {
+  var depths []*LinkedListOfTreeNodes
+  var depthList LinkedListOfTreeNodes
+
+  depthList.Append(root)
+  depths = append(depths, &depthList)
+
+  writeDepth(root.LeftChild, 1, &depths)
+  writeDepth(root.RightChild, 1, &depths)
+
+  for i := 0; i < len(depths); i++ {
+    PrintLinkedListOfTreeNodes(*depths[i])
+  }
+}
