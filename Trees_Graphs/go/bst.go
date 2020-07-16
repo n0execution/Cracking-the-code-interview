@@ -42,10 +42,43 @@ func validateBST(leftNode *types.TreeNode, middle *types.TreeNode, rightNode *ty
 }
 
 
+func writeToArray(array *[]types.TreeNode, node *types.TreeNode) {
+  if node.LeftChild != nil {
+    writeToArray(array, node.LeftChild)
+  }
+  *array = append(*array, *node)
+
+  if node.RightChild != nil {
+    writeToArray(array, node.RightChild)
+  }
+}
+
+
+func validateBST2(node *types.TreeNode) bool {
+  var array []types.TreeNode
+  writeToArray(&array, node.LeftChild)
+  array = append(array, *node)
+  writeToArray(&array, node.RightChild)
+
+  for i := 0; i < len(array) - 1; i++ {
+    if array[i].Value > array[i+1].Value {
+      return false
+    } else if array[i].Value == array[i+1].Value && array[i].RightChild != nil {
+      if *array[i].RightChild == array[i+1] {
+        return false
+      }
+    }
+  }
+
+  return true
+}
+
+
 func main() {
-  array := []int{1, 2, 3, 4, 5, 6, 7, 8}
+  array := []int{1, 2, 4, 4, 5, 6, 7, 8}
   root := types.CreateTree(array)
   types.PrintTreeNodes(root)
 
-  fmt.Println(validateBST(root.LeftChild, root, root.RightChild))
+  fmt.Println(validateBST(root.LeftChild, root, root.RightChild)) // wrong
+  fmt.Println(validateBST2(root))
 }
