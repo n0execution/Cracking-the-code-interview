@@ -47,3 +47,42 @@ func (s *Stack) IsEmpty() bool {
 func PrintStack(s Stack) {
   fmt.Println(s.elements)
 }
+
+
+// StringStack implementation
+type StringStack struct {
+  elements []string
+  top string
+  size int
+}
+
+
+func (s *StringStack) Push(x string) {
+  s.elements = append(s.elements, x)
+  s.top = x
+  s.size++
+}
+
+
+func (s *StringStack) Pop() (string, bool) {
+  top := s.top
+
+  if s.IsEmpty() {
+    return "", false
+  }
+
+  s.elements = s.elements[:s.size-1]
+  s.size--
+
+  if s.IsEmpty() {
+    return top, true
+  }
+  s.top = s.elements[s.size-1]
+
+  return top, true
+}
+
+
+func (s *StringStack) IsEmpty() bool {
+  return s.size == 0
+}
