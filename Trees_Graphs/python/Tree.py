@@ -1,3 +1,6 @@
+from LinkedList import *
+
+
 class TreeNode(object):
     def __init__(self, value):
         self.value = value
@@ -32,6 +35,37 @@ class Tree():
             node.left_child, node.right_child = self.get_child(array[:length / 2]), self.get_child(array[length / 2  + 1:])
 
         return node
+
+    def write_depth(self, node, depth_num, depths):
+        depth_list = LinkedList()
+
+        if depth_num == len(depths):
+            depth_list.append(node)
+            depths.append(depth_list)
+        else:
+            depth_list = depths[depth_num]
+            depth_list.append(node)
+            depths[depth_num] = depth_list
+
+        if node.left_child:
+            self.write_depth(node.left_child, depth_num + 1, depths)
+
+        if node.right_child:
+            self.write_depth(node.right_child, depth_num + 1, depths)
+
+    def print_tree(self):
+        depths = []
+        depth_list = LinkedList()
+
+        depth_list.append(self.root)
+
+        depths.append(depth_list)
+
+        self.write_depth(self.root.left_child, 1, depths)
+        self.write_depth(self.root.right_child, 1, depths)
+
+        for depth in depths:
+            print(depth)
 
 
 class LinkedListTreeNode(object):
