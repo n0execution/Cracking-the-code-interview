@@ -2,10 +2,11 @@ from LinkedList import *
 
 
 class TreeNode(object):
-    def __init__(self, value):
+    def __init__(self, value, parent=None):
         self.value = value
         self.left_child = None
         self.right_child = None
+        self.parent = parent
 
     def __str__(self):
         return str(self.value)
@@ -19,20 +20,20 @@ class Tree():
         length = len(array)
         root = TreeNode(array[length / 2])
 
-        root.left_child, root.right_child = self.get_child(array[:length / 2]), self.get_child(array[length / 2  + 1:])
+        root.left_child, root.right_child = self.get_child(array[:length / 2], root), self.get_child(array[length / 2  + 1:], root)
         self.root = root
 
-    def get_child(self, array):
+    def get_child(self, array, parent):
         length = len(array)
-        node = TreeNode(array[length / 2])
+        node = TreeNode(array[length / 2], parent)
 
         if length == 1:
             return node
 
         if length == 2:
-            node.left_child = self.get_child(array[:length / 2])
+            node.left_child = self.get_child(array[:length / 2], node)
         else:
-            node.left_child, node.right_child = self.get_child(array[:length / 2]), self.get_child(array[length / 2  + 1:])
+            node.left_child, node.right_child = self.get_child(array[:length / 2], node), self.get_child(array[length / 2  + 1:], node)
 
         return node
 
