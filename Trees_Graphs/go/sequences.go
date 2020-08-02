@@ -38,21 +38,6 @@ func getSequences(node *types.TreeNode) [][]*types.TreeNode {
     leftSequences = getSequences(node.LeftChild)
     rightSequences = getSequences(node.RightChild)
 
-    // fmt.Println("left")
-    // for i := 0; i < len(leftSequences); i++ {
-    //   for j := 0; j < len(leftSequences[i]); j++ {
-    //     fmt.Printf("%v ", leftSequences[i][j].Value)
-    //   }
-    //   fmt.Println("\n")
-    // }
-    // fmt.Println("right")
-    // for i := 0; i < len(rightSequences); i++ {
-    //   for j := 0; j < len(rightSequences[i]); j++ {
-    //     fmt.Printf("%v ", rightSequences[i][j].Value)
-    //   }
-    //   fmt.Println("\n")
-    // }
-
     for i := 0; i < len(leftSequences); i++ {
       var begin []*types.TreeNode
       sequence = leftSequences[i]
