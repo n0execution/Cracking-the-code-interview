@@ -18,22 +18,22 @@ class TreeNode(object):
 class Tree():
     def __init__(self, array):
         length = len(array)
-        root = TreeNode(array[length / 2])
+        root = TreeNode(array[int(length / 2)])
 
-        root.left_child, root.right_child = self.get_child(array[:length / 2], root), self.get_child(array[length / 2  + 1:], root)
+        root.left_child, root.right_child = self.get_child(array[:int(length / 2)], root), self.get_child(array[int(length / 2)  + 1:], root)
         self.root = root
 
     def get_child(self, array, parent):
         length = len(array)
-        node = TreeNode(array[length / 2], parent)
+        node = TreeNode(array[int(length / 2)], parent)
 
         if length == 1:
             return node
 
         if length == 2:
-            node.left_child = self.get_child(array[:length / 2], node)
+            node.left_child = self.get_child(array[:int(length / 2)], node)
         else:
-            node.left_child, node.right_child = self.get_child(array[:length / 2], node), self.get_child(array[length / 2  + 1:], node)
+            node.left_child, node.right_child = self.get_child(array[:int(length / 2)], node), self.get_child(array[int(length / 2)  + 1:], node)
 
         return node
 
