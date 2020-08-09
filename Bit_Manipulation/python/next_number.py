@@ -75,8 +75,6 @@ def get_prev2(num):
 
     prev = num
 
-    print(index - ones)
-
     for i in range(32):
         if i == index:
             prev = clear_bit(prev, i)
